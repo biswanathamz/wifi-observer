@@ -1,0 +1,19 @@
+# Session output (regenerated each run)
+logs/
+
+# Auto-created virtualenv for matplotlib
+.venv/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Local editor / tooling settings
+.claude/
+.vscode/
+.idea/
+
+# OS noise
+.DS_Store
+Thumbs.db
