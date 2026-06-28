@@ -1,0 +1,13 @@
+# Ruff configuration — https://docs.astral.sh/ruff/
+# Uses Ruff's default rule set (pyflakes + a focused subset of pycodestyle),
+# which catches real errors (undefined names, unused imports, bad f-strings)
+# without enforcing noisy style rules.
+target-version = "py38"
+line-length = 110
+
+exclude = [".venv", "logs", "__pycache__"]
+
+[lint]
+# Allow the compact `if cond: return value` lookup ladders (signal/stability
+# labels) — they read as small tables and are intentional here.
+ignore = ["E701"]
