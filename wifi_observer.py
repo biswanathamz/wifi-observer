@@ -356,7 +356,8 @@ class KeyReader:
 
     def __enter__(self) -> "KeyReader":
         if self.enabled:
-            import termios, tty
+            import termios
+            import tty
             try:
                 self._fd = sys.stdin.fileno()
                 self._old = termios.tcgetattr(self._fd)
@@ -485,11 +486,11 @@ def print_summary(stats: Stats, started, log_path, summary_path, graph_msg, c: C
     print()
     print(c.bold("── Session summary ─────────────────────────────"))
     print(f" duration     : {fmt_duration(now - started)}")
-    print(f" INTERNET")
+    print(" INTERNET")
     print(f"   uptime     : {stats.uptime_pct:.1f}%   packet loss {stats.loss_pct:.1f}%   ({stats.up_count}/{stats.total})")
     print(f"   latency    : avg {fmt_ms(stats.lat_avg)}  min {fmt_ms(stats.lat_min)}  max {fmt_ms(stats.lat_max)}  jitter {stats.lat_jitter:.1f} ms")
     print(f"   outages    : {stats.outages}   downtime {fmt_duration(stats.downtime_s)}   longest {fmt_duration(stats.longest_outage_s)}")
-    print(f" WIFI SIGNAL")
+    print(" WIFI SIGNAL")
     print(f"   signal     : avg {fmt_dbm(stats.sig_avg)}  min {fmt_dbm(stats.sig_min)}  max {fmt_dbm(stats.sig_max)} dBm  ({signal_label(stats.sig_avg)})")
     print(f"   stability  : {stability_label(stats.sig_std, stats._sig_n)}  (±{stats.sig_std:.1f} dBm)")
     print("─────────────────────────────────────────────────")
