@@ -1,15 +1,12 @@
 """Unit tests for stats math, ping regex, and /proc/net/wireless parser."""
 
-import math
-import re
+import os
+import sys
 import time
 import unittest
-from dataclasses import dataclass
 from typing import Optional
 from unittest.mock import mock_open, patch
 
-import sys
-import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from wifi_observer import (
@@ -19,7 +16,6 @@ from wifi_observer import (
     _LAT_RE,
     read_wifi_signal,
     signal_label,
-    stability_label,
 )
 
 
@@ -117,17 +113,22 @@ class TestStatsOutages(unittest.TestCase):
     def test_outage_count(self):
         st = Stats()
         t = 0.0
-        st.add(_make_probe(True, ts=t)); t += 1
-        st.add(_make_probe(False, ts=t)); t += 1   # outage 1 starts
-        st.add(_make_probe(False, ts=t)); t += 1
-        st.add(_make_probe(True, ts=t)); t += 1    # outage 1 ends
-        st.add(_make_probe(False, ts=t)); t += 1   # outage 2 starts
+        st.add(_make_probe(True, ts=t))
+        t += 1
+        st.add(_make_probe(False, ts=t))   # outage 1 starts
+        t += 1
+        st.add(_make_probe(False, ts=t))
+        t += 1
+        st.add(_make_probe(True, ts=t))    # outage 1 ends
+        t += 1
+        st.add(_make_probe(False, ts=t))   # outage 2 starts
         self.assertEqual(st.outages, 2)
 
     def test_downtime_tracked(self):
         st = Stats()
         t = 0.0
-        st.add(_make_probe(False, ts=t)); t += 5
+        st.add(_make_probe(False, ts=t))
+        t += 5
         st.add(_make_probe(False, ts=t))
         self.assertGreater(st.longest_outage_s, 0)
 
