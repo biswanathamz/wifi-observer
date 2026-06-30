@@ -9,6 +9,12 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Packaging build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
 # Local editor / tooling settings
 .claude/
 .vscode/
