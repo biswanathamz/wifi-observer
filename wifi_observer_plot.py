@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""plot.py — render graphs from WiFi Observer data using matplotlib.
+"""wifi_observer_plot.py — render graphs from WiFi Observer data using matplotlib.
 
 The live program (wifi_observer.py) imports `build_figure` from here when you
 press [g], so you normally never run this script by hand. It also works
 standalone:
 
-    python3 plot.py [LOGFILE] [-o OUTPUT.png] [--show]
+    python3 wifi_observer_plot.py [LOGFILE] [-o OUTPUT.png] [--show]
 
 If LOGFILE is omitted, the newest logs/wifi-*.jsonl is used. Produces two
 stacked charts sharing a time axis:

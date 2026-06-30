@@ -44,5 +44,6 @@ Issues = "https://github.com/biswanathamz/wifi-observer/issues"
 
 [tool.setuptools]
 # Flat layout: ship the two top-level modules explicitly (avoids auto-discovery
-# pulling in tests/ and keeps `import plot` working when installed).
-py-modules = ["wifi_observer", "plot"]
+# pulling in tests/). The plot module is namespaced (wifi_observer_plot) so it
+# doesn't collide with anything else in a user's site-packages.
+py-modules = ["wifi_observer", "wifi_observer_plot"]
