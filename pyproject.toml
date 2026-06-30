@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wifi-observer"
+version = "0.1.0"
+description = "Terminal tool that monitors internet reachability and WiFi signal strength once per second, with a live UI, JSON logging, and matplotlib graphs."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "biswanathamz" }]
+keywords = ["wifi", "network", "monitor", "ping", "latency", "signal", "terminal", "tui"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Networking :: Monitoring",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# Graphs need matplotlib; the monitor itself is stdlib-only.
+graph = ["matplotlib"]
+# Tooling for contributors.
+dev = ["ruff", "pytest"]
+
+[project.scripts]
+wifi-observer = "wifi_observer:main"
+
+[project.urls]
+Homepage = "https://github.com/biswanathamz/wifi-observer"
+Repository = "https://github.com/biswanathamz/wifi-observer"
+Issues = "https://github.com/biswanathamz/wifi-observer/issues"
+
+[tool.setuptools]
+# Flat layout: ship the two top-level modules explicitly (avoids auto-discovery
+# pulling in tests/ and keeps `import plot` working when installed).
+py-modules = ["wifi_observer", "plot"]

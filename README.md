@@ -116,6 +116,19 @@ and the system `ping`. The first run bootstraps a local `.venv` and installs
 > Prefer to manage deps yourself? `pip install matplotlib` and run
 > `python3 wifi_observer.py` directly.
 
+### Install as a command (optional)
+
+Install it as a proper CLI so `wifi-observer` is on your `PATH`:
+
+```bash
+pip install .                 # core only (stdlib monitor)
+pip install '.[graph]'        # + matplotlib, for the `g` graph feature
+wifi-observer --help
+```
+
+Without the `graph` extra the monitor still runs fully; graphs are simply
+skipped until matplotlib is present.
+
 ---
 
 ## Usage
