@@ -390,7 +390,7 @@ class KeyReader:
 
 def generate_graph(history, log_path, graph_path):
     """Render a graph from the full log (or in-memory history). Returns (ok, msg)."""
-    import plot
+    import wifi_observer_plot as plot
     if log_path and os.path.isfile(log_path):
         rows = plot.load(log_path)           # full session, even beyond memory cap
     else:

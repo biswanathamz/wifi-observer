@@ -188,7 +188,7 @@ A graph is **also saved automatically on exit**, and everything lands under
 |------|----------|------|
 | [run.sh](run.sh) | Bash | Checks deps, bootstraps matplotlib into `.venv`, launches the app. |
 | [wifi_observer.py](wifi_observer.py) | Python | Monitor loop, measurements, statistics, interactive UI, JSON logging. |
-| [plot.py](plot.py) | Python | Builds the matplotlib figure; used by the app and standalone. |
+| [wifi_observer_plot.py](wifi_observer_plot.py) | Python | Builds the matplotlib figure; used by the app and standalone. |
 
 ### The per-second cycle
 
@@ -258,8 +258,8 @@ avg/min/max/stddev/stability).
 Re-plot any old log standalone:
 
 ```bash
-python3 plot.py                                   # newest log → <log>.png
-python3 plot.py logs/2026-06-28/wifi-215205.jsonl -o report.png --show
+python3 wifi_observer_plot.py                              # newest log → <log>.png
+python3 wifi_observer_plot.py logs/2026-06-28/wifi-215205.jsonl -o report.png --show
 ```
 
 ---
@@ -290,7 +290,7 @@ wifi-observer/
 │   └── SPEC.md              # full specification
 ├── run.sh                   # Bash launcher (+ matplotlib venv bootstrap)
 ├── wifi_observer.py         # Python monitor, UI, logging
-├── plot.py                  # matplotlib figure builder (UI + standalone)
+├── wifi_observer_plot.py    # matplotlib figure builder (UI + standalone)
 ├── LICENSE                  # MIT
 ├── README.md
 ├── .venv/                   # auto-created on first run        [git-ignored]
@@ -334,7 +334,7 @@ Contributions are welcome! 🎉
 
 1. **Fork** the repo and create a branch: `git checkout -b feature/my-change`.
 2. **Make your change.** Keep the monitor **standard-library only** (matplotlib is
-   fine to import *lazily* inside `plot.py`). Match the existing style.
+   fine to import *lazily* inside `wifi_observer_plot.py`). Match the existing style.
 3. **Test it** — run `./run.sh` and verify the live UI, logging, and a generated
    graph. For unreachable-host behaviour, try `./run.sh -H 192.0.2.1` (TEST-NET).
 4. **Commit** with a clear message and **open a Pull Request** describing what and
